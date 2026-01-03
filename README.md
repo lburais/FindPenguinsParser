@@ -1,8 +1,8 @@
-# Find Penguins Parser
-This project contains tree scripts for transforming Find Penguins Trips Into PDFs or HTML Documents.
+# Find Penguins Scrapper
+This project contains tree scripts for transforming Find Penguins Trips Into XML or PDF or HTML documents.
 
 ## Downloading Trips
-The first script is the `penguin_parser.py` which requires two arguments, the storage path and the trip. This script will download all footprints, including text and images from the given trip into the given directory.
+The first script is the `penguin_scrapper.py` which requires two arguments, the storage path and the trip. This script will download all footprints, including text and images from the given trip into the given directory.
 Usage:
 ```
 python3 penguin_parser.py <path-to-local-storage-directory> "<find-penguins-user>/trip/<trip-name>"

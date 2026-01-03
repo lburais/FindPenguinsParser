@@ -266,6 +266,7 @@ def build_xml(user_data, trips):
     # ET.SubElement(user_el, "website").text = user_data["website"]
     # ET.SubElement(user_el, "picture").text = user_data["picture"]
     for key, value in user_data.items():
+        print( f"user[{key}] : {value}")
         ET.SubElement(user_el, key).text = value
 
     # Trips
@@ -279,27 +280,32 @@ def build_xml(user_data, trips):
         # ET.SubElement(trip_el, "days").text = trip["days"]
         # ET.SubElement(trip_el, "url").text = trip["url"]
         for key, value in trip.items():
-            ET.SubElement(trip_el, key).text = value
+            if key not in ['companions', 'footprints']:
+                print( f"trip[{key}] : {value}")
+                ET.SubElement(trip_el, key).text = value
 
         # Trip companions
         tcomps_el = ET.SubElement(trip_el, "companions")
         for c in trip.get("companions", []):
             ce = ET.SubElement(tcomps_el, "companion")
-            ET.SubElement(ce, "id").text = c["id"]
-            ET.SubElement(ce, "name").text = c["name"]
-            ET.SubElement(ce, "avatar").text = c["avatar"]
-            # for key, value in c.items():
-            #     ET.SubElement(ce, key).text = value
+            # ET.SubElement(ce, "id").text = c["id"]
+            # ET.SubElement(ce, "name").text = c["name"]
+            # ET.SubElement(ce, "avatar").text = c["avatar"]
+            for key, value in c.items():
+                print( f"companion[{key}] : {value}")
+                ET.SubElement(ce, key).text = value
 
         # Footprints
         fps_el = ET.SubElement(trip_el, "footprints")
         for fp in trip.get("footprints", []):
             fp_el = ET.SubElement(fps_el, "footprint")
-            ET.SubElement(fp_el, "title").text = fp["title"]
-            ET.SubElement(fp_el, "date").text = fp["date"]
-            ET.SubElement(fp_el, "text").text = fp["text"]
-            # for key, value in fp.items():
-            #     ET.SubElement(fps_el, key).text = value
+            # ET.SubElement(fp_el, "title").text = fp["title"]
+            # ET.SubElement(fp_el, "date").text = fp["date"]
+            # ET.SubElement(fp_el, "text").text = fp["text"]
+            for key, value in fp.items():
+                if key not in ["photos"]:
+                    print( f"footprint[{key}] : {value}")
+                    ET.SubElement(fps_el, key).text = value
 
             photos_el = ET.SubElement(fp_el, "photos")
             for p in fp["photos"]:
